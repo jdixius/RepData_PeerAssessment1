@@ -6,6 +6,7 @@
 ### get the data from the activity.csv file and set to data frame
 ```{r}
 #assumes in working directory
+setwd("C://Users//Jim//Documents//Coursera//Reproducible_Research//RepData_PeerAssessment1")
 DataActTemp <- read.csv("activity.csv",as.is=TRUE)
 DataAct <- na.omit(DataActTemp)
 
@@ -40,9 +41,11 @@ for (i in 1:length(DataActSplit)) {
         # put these in the variables set previously
         d[i] <- GoDAS[1,2]
         tS[i] <- Tsteps #ts is a vector containing the total steps for each day              
-        mnS[i] < MnSteps
+        mnS[i] <- MnSteps
         mdS[i] <- MdSteps
-        Tdf[i] <- c(d[i],mnS[i],mdS[i])
+        Tdf[i,1] <- c(d[i])
+        Tdf[i,2] <- c(mnS[i])
+        Tdf[i,3] <- c(mdS[i])
 }
 
 ##2. Make a histogram of the total number of steps taken each day
@@ -75,7 +78,7 @@ hist(tS,col="red",xlab="steps",ylab="days",main="Steps per Day",breaks=20)
 ```
 
 The mean and median of the total number of steps taken per day 
-```{r showtable,results="asis"}
+```{r showtable, results="asis"}
 print(Tdf,type="html")
 ```
 
